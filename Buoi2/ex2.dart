@@ -1,4 +1,5 @@
 import "dart:io";
+import "dart:math";
 
 void main() {
   /**
@@ -7,8 +8,9 @@ void main() {
 
   int n = 0;
   do {
-    print("Nhap so nguyen n >= 1: ");
+    stdout.write("Nhap so nguyen n >= 1: ");
     String? temp = stdin.readLineSync();
+
     if (temp == null) {
       print("Du lieu khong hop le, Nhap Lai!");
     } else {
@@ -16,11 +18,15 @@ void main() {
     }
   } while (n < 1);
 
-  int sum = 1;
-  for (int i = 2; i <= n; i++) {
+  int sum = 0;
+  int sqrtN = sqrt(n).toInt();
+  for (int i = 1; i <= sqrtN; i++) {
     int uoc = n % i;
     if (uoc == 0) {
       sum += i;
+      if (i != n ~/ i) {
+        sum += n ~/ i;
+      }
     }
   }
   print("Tong uoc so: $sum");
